@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{21D2587B-1412-4657-937D-BA18595F893A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeThemingEngine.Web", "RealTimeThemingEngine.Web\RealTimeThemingEngine.Web.csproj", "{8FBA3B89-F9BF-4F55-B0FB-BE1BAE35C755}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infastructure", "Infastructure", "{BBB0B580-E5AC-484A-8B0C-F2F720F272FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeThemingEngine.ThemeManagement", "RealTimeThemingEngine.ThemeManagement\RealTimeThemingEngine.ThemeManagement.csproj", "{CF008905-7199-4FFA-83F7-91AED9BEA992}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeThemingEngine.ThemeEngine", "RealTimeThemingEngine.ThemeEngine\RealTimeThemingEngine.ThemeEngine.csproj", "{A16450BD-502F-4086-A291-EE87F44E1BEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeThemingEngine.DependencyResolution", "RealTimeThemingEngine.DependencyResolution\RealTimeThemingEngine.DependencyResolution.csproj", "{5A7D86CD-62FD-4B10-8C86-E31B47430A1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FBA3B89-F9BF-4F55-B0FB-BE1BAE35C755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBA3B89-F9BF-4F55-B0FB-BE1BAE35C755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBA3B89-F9BF-4F55-B0FB-BE1BAE35C755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBA3B89-F9BF-4F55-B0FB-BE1BAE35C755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF008905-7199-4FFA-83F7-91AED9BEA992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF008905-7199-4FFA-83F7-91AED9BEA992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF008905-7199-4FFA-83F7-91AED9BEA992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF008905-7199-4FFA-83F7-91AED9BEA992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A16450BD-502F-4086-A291-EE87F44E1BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A16450BD-502F-4086-A291-EE87F44E1BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A16450BD-502F-4086-A291-EE87F44E1BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A16450BD-502F-4086-A291-EE87F44E1BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A7D86CD-62FD-4B10-8C86-E31B47430A1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A7D86CD-62FD-4B10-8C86-E31B47430A1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A7D86CD-62FD-4B10-8C86-E31B47430A1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A7D86CD-62FD-4B10-8C86-E31B47430A1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8FBA3B89-F9BF-4F55-B0FB-BE1BAE35C755} = {21D2587B-1412-4657-937D-BA18595F893A}
+		{CF008905-7199-4FFA-83F7-91AED9BEA992} = {BBB0B580-E5AC-484A-8B0C-F2F720F272FA}
+		{A16450BD-502F-4086-A291-EE87F44E1BEA} = {BBB0B580-E5AC-484A-8B0C-F2F720F272FA}
+		{5A7D86CD-62FD-4B10-8C86-E31B47430A1A} = {BBB0B580-E5AC-484A-8B0C-F2F720F272FA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E58FF49D-D92B-4D51-AAFF-4A08DCD35351}
+	EndGlobalSection
+EndGlobal
