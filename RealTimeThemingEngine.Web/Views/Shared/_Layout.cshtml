@@ -3,40 +3,42 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>@ViewBag.Title - Theming demo</title>
+    <link href="~/dist/site.bundle.min.css" rel="stylesheet" />
+    <link href="~/Content/Theming/theme.less" rel="stylesheet" />
+    <script src="~/dist/main.bundle.js" async defer></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <a class="skip-container sr-only sr-only-focusable" href="#pjax-container">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <span class="skiplink-text">Skip to main content</span>
+        </div>
+    </a>
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "" })">
+                Theming demo
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="main-nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        @Html.ActionLink("Theme management", "Index", "ThemeManagement", new { area = "" }, new { @class = "nav-link" })
+                    </li>
                 </ul>
             </div>
         </div>
+    </nav>
+    <div aria-hidden="true" class="alert-container" id="alert-container"></div>
+    <div class="loader-backdrop js-loader-wrapper hidden" id="loader-wrapper">
+        <div class="loader-container">
+            <div class="loader"></div>
+        </div>
     </div>
-    <div class="container body-content">
+    <main id="pjax-container">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    </main>
 </body>
 </html>

@@ -1,0 +1,60 @@
+﻿@model List<RealTimeThemingEngine.Web.Models.Theming.ThemeListViewModel>
+
+@{
+    ViewBag.Title = "Theme Management";
+}
+
+<header class="cip-form-header" ciphr-require="theme-management" ciphr-module-name="ThemeManagement" ciphr-module-variable="index">
+    <div class="container">
+        <h1 class="cip-form-title">Theme Management</h1>
+    </div>
+</header>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <table id="theme-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Active?</th>
+                        <th>Read only?</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td>
+                                    @item.Active
+                                </td>
+                                <td>
+                                    @item.ReadOnly
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" data-id="@item.ThemeId" title="Edit @item.Name" type="button">Edit</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-secondary" id="create-theme-btn" type="button">
+                <i aria-hidden="true" class="glyphicons glyphicons-more-windows"></i>Create
+            </button>
+            <button class="btn btn-secondary" id="import-theme-btn" type="button">
+                <i aria-hidden="true" class="glyphicons glyphicons-file-import"></i>Import
+            </button>
+            <button class="btn btn-secondary" id="logo-management-btn" type="button">
+                <i aria-hidden="true" class="glyphicons glyphicons-picture"></i>Manage logos
+            </button>
+        </div>
+    </div>
+</div>

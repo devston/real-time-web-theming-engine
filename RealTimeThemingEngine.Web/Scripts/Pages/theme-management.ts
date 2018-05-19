@@ -68,7 +68,7 @@ export namespace ThemeManagement {
      * Initialise the index page.
      */
     function initIndex() {
-        $("#theme-table-container").find(".table").on("click", ".js-edit-btn", function (e) {
+        $("#theme-table").on("click", ".js-edit-btn", function (e) {
             e.preventDefault();
             const themeId = <string>$(this).attr("data-id");
             Navigate.toEditTheme(themeId);

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using RealTimeThemingEngine.ThemeManagement.Core.Models;
+using RealTimeThemingEngine.Web.Models.Theming;
 using System;
 
 namespace RealTimeThemingEngine.Web.Common.Utilities
@@ -11,7 +13,12 @@ namespace RealTimeThemingEngine.Web.Common.Utilities
         {
             var config = new MapperConfiguration(cfg =>
             {
-                
+                cfg.CreateMap<ThemeModel, ThemeViewModel>()
+                   .ReverseMap();
+
+                cfg.CreateMap<ThemeModel, ThemeListViewModel>()
+                   .ForMember(x => x.Active, opt => opt.MapFrom(z => z.Active ? "Yes" : "No"))
+                   .ForMember(x => x.ReadOnly, opt => opt.MapFrom(z => z.ReadOnly ? "Yes" : "No"));
             });
 
             _mapper = config.CreateMapper();
