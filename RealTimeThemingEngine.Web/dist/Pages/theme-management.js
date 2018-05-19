@@ -32,7 +32,7 @@ export var ThemeManagement;
     }
     ThemeManagement.init = init;
     function initIndex() {
-        $("#theme-table-container").find(".table").on("click", ".js-edit-btn", function (e) {
+        $("#theme-table").on("click", ".js-edit-btn", function (e) {
             e.preventDefault();
             var themeId = $(this).attr("data-id");
             Navigate.toEditTheme(themeId);
