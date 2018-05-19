@@ -244,9 +244,9 @@
       <Project>{5a7d86cd-62fd-4b10-8c86-e31b47430a1a}</Project>
       <Name>RealTimeThemingEngine.DependencyResolution</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RealTimeThemingEngine.ThemeEngine\RealTimeThemingEngine.ThemeEngine.csproj">
-      <Project>{A16450BD-502F-4086-A291-EE87F44E1BEA}</Project>
-      <Name>RealTimeThemingEngine.ThemeEngine</Name>
+    <ProjectReference Include="..\RealTimeThemingEngine.ThemeEngine.Core\RealTimeThemingEngine.ThemeEngine.Core.csproj">
+      <Project>{571f950f-aabb-4b18-9855-624b2bb141aa}</Project>
+      <Name>RealTimeThemingEngine.ThemeEngine.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

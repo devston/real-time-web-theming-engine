@@ -1,5 +1,4 @@
 ﻿using RealTimeThemingEngine.ThemeEngine.Core.Interfaces;
-using RealTimeThemingEngine.ThemeEngine.Data.Entities;
 using RealTimeThemingEngine.Web.Common.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +17,8 @@ namespace RealTimeThemingEngine.Web.ThemeEngine
         // Get the theme variable value by its name from the active theme.
         public string GetThemeVariableValue(string name)
         {
-            var themeVariables = GetDefaultThemeVariables();
-            var value = themeVariables.Where(x => x.Name == name).Select(x => x.Value).FirstOrDefault();
+            var themeVariables = GetActiveThemeVariables();
+            var value = themeVariables.Where(x => x.Key == name).Select(x => x.Value).FirstOrDefault();
 
             if (string.IsNullOrEmpty(value))
             {
@@ -29,7 +28,7 @@ namespace RealTimeThemingEngine.Web.ThemeEngine
             return value;
         }
 
-        private List<ActiveTheme> GetDefaultThemeVariables()
+        private Dictionary<string, string> GetActiveThemeVariables()
         {
             return _themeEngine.GetActiveThemeVariables();
         }
