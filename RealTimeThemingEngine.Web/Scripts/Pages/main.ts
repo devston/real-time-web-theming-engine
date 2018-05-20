@@ -1,7 +1,6 @@
-﻿import "Content/ThirdParty/glyphicons.css";
+﻿import "font-awesome/css/font-awesome.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "datatables.net-bs4/css/dataTables.bootstrap4.css";
-import "Content/Static/style.scss";
 import $ from "jquery";
 import "bootstrap";
 import "jquery-validation";

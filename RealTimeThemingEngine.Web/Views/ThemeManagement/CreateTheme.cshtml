@@ -1,0 +1,46 @@
+﻿@model RealTimeThemingEngine.Web.Models.Theming.CreateThemeViewModel
+
+@{
+    ViewBag.Title = "Theme Management";
+}
+
+<header class="form-header" ciphr-require="theme-management" ciphr-module-name="ThemeManagement" ciphr-module-variable="create">
+    <div class="container">
+        <h1 class="form-title">Create theme</h1>
+    </div>
+</header>
+<div class="container">
+    <form class="card" id="theme-form">
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.SelectedThemeId)
+            <div class="form-group">
+                @Html.LabelFor(x => x.Name)
+                @Html.TextBoxFor(x => x.Name, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group form-check">
+                @Html.CheckBoxFor(x => x.Default, htmlAttributes: new { @class = "form-check-input" })
+                @Html.LabelFor(x => x.Default, htmlAttributes: new { @class = "form-check-label" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.SelectedThemeName)
+                <div class="input-group">
+                    @Html.TextBoxFor(x => x.SelectedThemeName, htmlAttributes: new { @class = "form-control", @readonly = "" })
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" id="select-theme-btn" title="Select a theme to copy" type="button">Select</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-secondary" id="save-theme-btn" title="Create the theme" type="submit">
+                <i aria-hidden="true" class="fas fa-save"></i>Create
+            </button>
+            <button class="btn btn-secondary" id="back-to-theme-list-btn" title="Go back to the theme list" type="button">
+                <i aria-hidden="true" class="fas fa-list-ul"></i>Back
+            </button>
+        </div>
+    </form>
+</div>
+<div id="theme-selection-modal-container"></div>

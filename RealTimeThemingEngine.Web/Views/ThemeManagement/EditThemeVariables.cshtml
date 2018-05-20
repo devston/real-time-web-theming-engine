@@ -1,0 +1,106 @@
+﻿@model RealTimeThemingEngine.Web.Models.Theming.ThemeEditVariablesViewModel
+
+@{
+    ViewBag.Title = "Theme Management";
+    bool firstCatTab = true; // Record the first category for tabs.
+    bool firstCatPanel = true; // Record the first category for panels.
+    int variableCount = 0; // Record the amount of theme variables.
+}
+
+<header class="form-header" ciphr-require="theme-management" ciphr-module-name="ThemeManagement" ciphr-module-variable="editVariables">
+    <div class="container">
+        <h1 class="form-title">Edit theme variables</h1>
+    </div>
+</header>
+<div class="container">
+    <nav class="nav nav-tabs">
+        @foreach (var category in Model.VariableCategories)
+        {
+            <a aria-controls="cat-panel-@category.ThemeVariableCategoryId" aria-selected="@(firstCatTab ? "true" : "false")" class="nav-item nav-link @(firstCatTab ? "active" : "")" id="cat-tab-@category.ThemeVariableCategoryId" data-toggle="tab" href="#cat-panel-@category.ThemeVariableCategoryId" role="tab">
+                @category.Description
+            </a>
+
+            firstCatTab = false;
+        }
+    </nav>
+    <form class="card cip-card cip-card-has-tabs" id="theme-form">
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.ThemeId)
+            <div class="tab-content" id="category-tab-content">
+                @foreach (var category in Model.VariableCategories)
+                {
+                    <div aria-controls="cat-tab-@category.ThemeVariableCategoryId" class="tab-pane fade @(firstCatPanel ? "show active" : "")" id="cat-panel-@category.ThemeVariableCategoryId" role="tabpanel">
+                        @foreach (var themeVariable in Model.Variables.Where(x => x.CategoryId == category.ThemeVariableCategoryId))
+                        {
+                            <input name="Variables[@variableCount].ThemeVariableValueId" type="hidden" value="@themeVariable.ThemeVariableValueId" />
+                            switch (themeVariable.TypeId)
+                            {
+                                // Colour
+                                case 1:
+                                    <div class="form-group">
+                                        <label for="variable-control-@themeVariable.ThemeVariableValueId">@themeVariable.Description</label>
+                                        <input class="form-control js-colour-control" id="variable-control-@themeVariable.ThemeVariableValueId" name="Variables[@variableCount].Value" type="text" value="@themeVariable.Value" />
+                                    </div>
+                                    break;
+
+                                // Font
+                                case 2:
+                                    <div class="form-group">
+                                        <label for="variable-control-@themeVariable.ThemeVariableValueId">@themeVariable.Description</label>
+                                        <select class="form-control js-font-control" data-id="@themeVariable.ThemeVariableValueId" id="variable-control-@themeVariable.ThemeVariableValueId" name="Variables[@variableCount].Value">
+                                            <option value="Arial" @(themeVariable.Value == "Arial" ? "selected" : "")>Arial</option>
+                                            <option value="Comic Sans MS" @(themeVariable.Value == "Comic Sans MS" ? "selected" : "")>Comic Sans</option>
+                                            <option value="Gill Sans MT" @(themeVariable.Value == "Gill Sans MT" ? "selected" : "")>Gill Sans MT</option>
+                                            <option value="Segoe UI" @(themeVariable.Value == "Segoe UI" ? "selected" : "")>Segoe UI</option>
+                                            <option value="Tahoma" @(themeVariable.Value == "Tahoma" ? "selected" : "")>Tahoma</option>
+                                            <option value="Trebuchet MS" @(themeVariable.Value == "Trebuchet MS" ? "selected" : "")>Trebuchet</option>
+                                        </select>
+                                        <h4 class="js-font-preview-@themeVariable.ThemeVariableValueId" style="font-family: @themeVariable.Value;">Preview</h4>
+                                        <p class="js-font-preview-@themeVariable.ThemeVariableValueId" style="font-family: @themeVariable.Value;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</p>
+                                        <p class="js-font-preview-@themeVariable.ThemeVariableValueId" style="font-family: @themeVariable.Value;">a b c d e f g h i j k l m n o p q r s t u v w x y z</p>
+                                    </div>
+                                    break;
+
+                                // Size
+                                case 3:
+                                    <div class="form-group">
+                                        <label for="variable-control-@themeVariable.ThemeVariableValueId">@themeVariable.Description</label>
+                                        <input class="js-size-control" data-id="@themeVariable.ThemeVariableValueId" id="variable-control-@themeVariable.ThemeVariableValueId" min="0" max="8" name="Variables[@variableCount].Value" step="1" value="@themeVariable.Value" type="range" />
+                                        <div class="row">
+                                            <div class="input-group col-offset-md-1 col-md-4">
+                                                <input class="form-control text-center" id="size-preview-@themeVariable.ThemeVariableValueId" value="@themeVariable.Value" readonly />
+                                                <div class="input-group-append readonly">
+                                                    <span class="input-group-text">px</span>
+                                                </div>
+                                            </div>
+                                            <span class="col-offset-md-2 col-md-3 btn btn-primary" id="control-preview-@themeVariable.ThemeVariableValueId" style="border-radius: @(themeVariable.Value)px;">
+                                                Preview
+                                            </span>
+                                        </div>
+                                    </div>
+                                    break;
+
+                                // Unknown type
+                                default:
+                                    break;
+                            }
+
+                            variableCount++;
+                        }
+                    </div>
+
+                    firstCatPanel = false;
+                }
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-secondary" id="save-theme-btn" title="Save any changes" type="submit">
+                <i aria-hidden="true" class="fas fa-save"></i>Save
+            </button>
+            <button class="btn btn-secondary" id="back-to-theme-list-btn" title="Go back to the theme list" type="button">
+                <i aria-hidden="true" class="fas fa-list-ul"></i>Back
+            </button>
+        </div>
+    </form>
+</div>

@@ -54,10 +54,6 @@ export namespace ThemeManagement {
                 initEditVariables();
                 break;
 
-            case "logoManagement":
-                initLogoManagement();
-                break;
-
             default:
                 initIndex();
                 break;
@@ -84,11 +80,6 @@ export namespace ThemeManagement {
         $("#import-theme-btn").on("click", function (e) {
             e.preventDefault();
             Navigate.toImport();
-        });
-
-        $("#logo-management-btn").on("click", function (e) {
-            e.preventDefault();
-            Navigate.toLogoManagement();
         });
     }
 
@@ -200,39 +191,8 @@ export namespace ThemeManagement {
 
         VariableControls.initColour(".js-colour-control");
         VariableControls.initFont(".js-font-control");
-        VariableControls.initLogo("#logo-list");
         VariableControls.initFileUpload("#upload-logo");
-        VariableControls.initLogoUpload("#upload-logo", "#submit-logo");
         VariableControls.initSlider(".js-size-control");
-    }
-
-    /**
-     * Initialise the logo management page.
-     */
-    function initLogoManagement() {
-        // Go back to the theme list.
-        $("#back-to-theme-list-btn").on("click", function (e) {
-            e.preventDefault();
-            Navigate.toIndex();
-        });
-
-        // Init delete logo btn events.
-        $("#logo-table").on("click", ".js-delete-logo-btn", function (e) {
-            e.preventDefault();
-            const logoName = <string>$(this).attr("data-logo");
-            openConfirmLogoDeletionModal(logoName);
-        });
-    }
-
-    /**
-     * Initialise the confirm logo deletion modal.
-     * @param logoName
-     */
-    function initConfirmLogoDeletionModal(logoName: string) {
-        $("#logo-deletion-form").on("submit", function (e) {
-            e.preventDefault();
-            deleteLogo(logoName);
-        });
     }
 
     /*------------------------------------------------------------------------*\
@@ -277,16 +237,16 @@ export namespace ThemeManagement {
                 type: "POST",
                 data: $form.serialize()
             })
-                .always(function () {
-                    SiteLoader.remove(formId);
-                })
-                .done(function (data) {
-                    VisibilityHelpers.alert("success", data.message, true);
-                    Navigate.toEditTheme(data.themeId);
-                })
-                .fail(function (jqXHR) {
-                    Site.showJqXhrAsAlert(jqXHR);
-                });
+            .always(function () {
+                SiteLoader.remove(formId);
+            })
+            .done(function (data) {
+                VisibilityHelpers.alert("success", data.message, true);
+                Navigate.toEditTheme(data.themeId);
+            })
+            .fail(function (jqXHR) {
+                Site.showJqXhrAsAlert(jqXHR);
+            });
         }
     }
 
@@ -327,16 +287,16 @@ export namespace ThemeManagement {
                 processData: false,
                 contentType: false
             })
-                .always(function () {
-                    SiteLoader.remove(formId);
-                })
-                .done(function (data) {
-                    VisibilityHelpers.alert("success", data.message, true);
-                    Navigate.toEditTheme(data.themeId);
-                })
-                .fail(function (jqXHR) {
-                    Site.showJqXhrAsAlert(jqXHR);
-                });
+            .always(function () {
+                SiteLoader.remove(formId);
+            })
+            .done(function (data) {
+                VisibilityHelpers.alert("success", data.message, true);
+                Navigate.toEditTheme(data.themeId);
+            })
+            .fail(function (jqXHR) {
+                Site.showJqXhrAsAlert(jqXHR);
+            });
         }
     }
 
@@ -357,16 +317,16 @@ export namespace ThemeManagement {
                 type: "POST",
                 data: $form.serialize()
             })
-                .always(function () {
-                    SiteLoader.remove(formId);
-                })
-                .done(function (data) {
-                    VisibilityHelpers.alert("success", data.message, true);
-                    Navigate.toEditTheme(data.themeId);
-                })
-                .fail(function (jqXHR) {
-                    Site.showJqXhrAsAlert(jqXHR);
-                });
+            .always(function () {
+                SiteLoader.remove(formId);
+            })
+            .done(function (data) {
+                VisibilityHelpers.alert("success", data.message, true);
+                Navigate.toEditTheme(data.themeId);
+            })
+            .fail(function (jqXHR) {
+                Site.showJqXhrAsAlert(jqXHR);
+            });
         }
     }
 
@@ -426,115 +386,6 @@ export namespace ThemeManagement {
         .fail(function (jqXHR) {
             Site.showJqXhrAsAlert(jqXHR);
         });
-    }
-
-    /**
-     * Upload the logo to the server.
-     * @param fileSelector
-     */
-    function uploadLogo(fileSelector: string, btnSelector: string) {
-        var files = (<HTMLInputElement>$(fileSelector).get(0)).files;
-
-        // Check if there is a file.
-        if (files == null || files.length == 0) {
-            VisibilityHelpers.alert("danger", "<strong>Error</strong>: Select an image.", true);
-            return;
-        }
-
-        // Check logo is not larger than 1mb.
-        else if (files[0].size > 1048576) {
-            VisibilityHelpers.alert("danger", "<strong>Error</strong>: Image must be smaller than 1MB.", true);
-            return;
-        }
-
-        // Create a fake form to put logo inside so ajax can serialise.
-        var formData = new FormData();
-        var totalFiles = files.length;
-
-        for (var i = 0; i < totalFiles; i++) {
-            var file = files[i];
-            formData.append("upload-logo", file);
-        }
-
-        // Append the anti forgery token to FormData object.
-        formData.append("__RequestVerificationToken", <string>$("#theme-form").find("input[name=__RequestVerificationToken]").val());
-
-        // jQuery object is used multiple times so store it in a variable.
-        var $submitBtn = $(btnSelector);
-
-        $.ajax({
-            beforeSend: function () {
-                VisibilityHelpers.loader(true);
-                $submitBtn.attr("disabled", "");
-            },
-            type: "POST",
-            url: "/ThemeManagement/UploadLogo",
-            data: formData,
-            dataType: "json",
-            contentType: false,
-            processData: false
-        })
-            .always(function () {
-                VisibilityHelpers.loader(false);
-                $submitBtn.removeAttr("disabled");
-            })
-            .done(function (data: any) {
-                // Inform the user the logo has uploaded successfully.
-                if (data.warning) {
-                    VisibilityHelpers.alert("warning", data.message, true);
-                }
-                else {
-                    VisibilityHelpers.alert("success", data.message, true);
-                }
-
-                // Render logo in the necessary mark up.
-                var hbObj = {
-                    "id": data.logoName.replace(".", "-"),
-                    "logoName": data.logoName
-                };
-                var logoTemplate = require("handlebarsTemplates/theme-logo-added-template")(hbObj);
-
-                $("#logo-list").append(logoTemplate);
-            })
-            .fail(function (jqXHR) {
-                Site.showJqXhrAsAlert(jqXHR);
-            });
-    }
-
-    /**
-     * Delete a logo.
-     */
-    function deleteLogo(logoName: string) {
-        const containerId = "#logo-management-container";
-        const token = <string>$("#logo-deletion-form").find("input[name=__RequestVerificationToken]").val();
-        closeConfirmLogoDeletionModal();
-
-        // jQuery object is used multiple times so store it in a variable.
-        const $deleteBtns = $(containerId).find(".js-delete-logo-btn");
-
-        $.ajax({
-            beforeSend: function () {
-                SiteLoader.show(containerId);
-                $deleteBtns.attr("disabled", "");
-            },
-            url: "/ThemeManagement/DeleteLogo",
-            type: "POST",
-            data: {
-                "logo": logoName,
-                "__RequestVerificationToken": token
-            }
-        })
-            .always(function () {
-                SiteLoader.remove(containerId);
-                $deleteBtns.removeAttr("disabled");
-            })
-            .done(function (data) {
-                VisibilityHelpers.alert("success", data.message, true);
-                $("#" + logoName.replace(".", "-")).remove();
-            })
-            .fail(function (jqXHR) {
-                Site.showJqXhrAsAlert(jqXHR);
-            });
     }
 
     /*------------------------------------------------------------------------*\
@@ -603,58 +454,13 @@ export namespace ThemeManagement {
             type: "GET",
             url: `/ThemeManagement/_ConfirmDeleteTheme/${themeId}`
         })
-            .always(function () {
-                VisibilityHelpers.loader(false);
-            })
-            .done(function (data: any) {
-                $("#theme-deletion-modal-container").html(data);
-                initConfirmThemeDeletionModal(themeId);
-                openConfirmThemeDeletionModal(themeId);
-            })
-            .fail(function (jqXHR) {
-                Site.showJqXhrAsAlert(jqXHR);
-            });
-    }
-
-    /**
-     * Open the confirm logo deletion modal.
-     * @param logoName
-     */
-    function openConfirmLogoDeletionModal(logoName: string) {
-        // Empty the container if it is now empty.
-        if (!$("#logo-deletion-modal-container").is(":empty")) {
-            $("#logo-deletion-modal-container").empty();
-        }
-
-        loadConfirmLogoDeletionModal(logoName);
-    }
-
-    /**
-     * Close the confirm logo deletion modal.
-     */
-    function closeConfirmLogoDeletionModal() {
-        $("#logo-deletion-modal").modal("hide");
-    }
-
-    /**
-     * Load the confirm logo deletion modal.
-     * @param logoName
-     */
-    function loadConfirmLogoDeletionModal(logoName: string) {
-        $.ajax({
-            beforeSend: function () {
-                VisibilityHelpers.loader(true);
-            },
-            type: "GET",
-            url: "/ThemeManagement/_ConfirmDeleteLogo/"
-        })
         .always(function () {
             VisibilityHelpers.loader(false);
         })
         .done(function (data: any) {
-            $("#logo-deletion-modal-container").html(data);
-            initConfirmLogoDeletionModal(logoName);
-            $("#logo-deletion-modal").modal("show");
+            $("#theme-deletion-modal-container").html(data);
+            initConfirmThemeDeletionModal(themeId);
+            openConfirmThemeDeletionModal(themeId);
         })
         .fail(function (jqXHR) {
             Site.showJqXhrAsAlert(jqXHR);
@@ -681,26 +487,6 @@ export namespace ThemeManagement {
         }
 
         /**
-         * Initialise the logo control.
-         * @param selector Selector for the logo list.
-         */
-        export function initLogo(selector: string) {
-            $(selector).on("click", ".js-logo-item", function (e) {
-                e.preventDefault();
-                const $this = $(this);
-                const logoName = <string>$this.attr("data-logo");
-                $(selector).children(".js-logo-item").removeClass("active");
-                $this.addClass("active");
-                $("#selected-logo").val(logoName);
-
-                // Get image width and update logo size.
-                var img = $this.find("img").get(0);
-                var width = img.clientWidth;
-                $("#logo-size").val(width);
-            });
-        }
-
-        /**
          * Initialise file upload input.
          * @param selector Selector for file upload.
          */
@@ -715,17 +501,6 @@ export namespace ThemeManagement {
                 }
 
                 $this.next(".custom-file-label").html(fileName);
-            });
-        }
-
-        /**
-         * Initialise the logo upload control.
-         * @param selector
-         */
-        export function initLogoUpload(fileSelector: string, btnSelector: string) {
-            $(btnSelector).on("click", function (e) {
-                e.preventDefault();
-                uploadLogo(fileSelector, btnSelector);
             });
         }
 
@@ -800,13 +575,6 @@ export namespace ThemeManagement {
          */
         export function toEditThemeVariables(themeId: string) {
             Site.loadPartial(`/ThemeManagement/EditThemeVariables/${themeId}`);
-        }
-
-        /**
-         * Navigate to the logo management page.
-         */
-        export function toLogoManagement() {
-            Site.loadPartial("/ThemeManagement/LogoManagement");
         }
     }
 }

@@ -167,9 +167,7 @@
     <Compile Include="Common\Classes\JsonContentResult.cs" />
     <Compile Include="Common\Classes\SiteErrorHandler.cs" />
     <Compile Include="Common\Exceptions\SiteValidationException.cs" />
-    <Compile Include="Common\Interfaces\IImageService.cs" />
     <Compile Include="Common\Interfaces\IThemeEngineService.cs" />
-    <Compile Include="Common\Utilities\ImageService.cs" />
     <Compile Include="Common\Utilities\ViewModelMapper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ThemeManagementController.cs" />
@@ -181,7 +179,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Theming\CreateThemeViewModel.cs" />
+    <Compile Include="Models\Theming\ImportThemeViewModel.cs" />
+    <Compile Include="Models\Theming\ThemeEditVariablesViewModel.cs" />
     <Compile Include="Models\Theming\ThemeListViewModel.cs" />
+    <Compile Include="Models\Theming\ThemeVariableCategoryViewModel.cs" />
+    <Compile Include="Models\Theming\ThemeVariableValueViewModel.cs" />
     <Compile Include="Models\Theming\ThemeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThemeEngine\CalculateRemFunction.cs" />
@@ -231,6 +234,11 @@
     <Content Include="Scripts\Templates\theme-logo-added.handlebars" />
     <Content Include="Views\ThemeManagement\Index.cshtml" />
     <Content Include="Views\Shared\_PjaxLayout.cshtml" />
+    <Content Include="Views\ThemeManagement\CreateTheme.cshtml" />
+    <Content Include="Views\ThemeManagement\EditTheme.cshtml" />
+    <Content Include="Views\ThemeManagement\_ConfirmDeleteTheme.cshtml" />
+    <Content Include="Views\ThemeManagement\ImportTheme.cshtml" />
+    <Content Include="Views\ThemeManagement\EditThemeVariables.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\Components\site-loader.ts" />

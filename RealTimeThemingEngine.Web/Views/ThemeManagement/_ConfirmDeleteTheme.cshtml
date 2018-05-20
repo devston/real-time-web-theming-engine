@@ -1,0 +1,38 @@
+﻿@model RealTimeThemingEngine.Web.Models.Theming.ThemeViewModel
+
+<div aria-labelledby="delete-theme-modal-label" aria-hidden="true" class="modal fade" id="theme-deletion-modal" role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <form class="modal-content" id="theme-deletion-form">
+            <div class="modal-header">
+                <h5 class="modal-title" id="delete-theme-modal-label">Delete @Model.Name</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.ThemeId)
+                @if (Model.ReadOnly)
+                {
+                    <p><i>@Model.Name</i> is a <strong>system theme</strong>, and cannot be deleted.</p>
+                }
+                else if (Model.Active)
+                {
+                    <p><i>@Model.Name</i> is currently in <strong>use</strong>, and cannot be deleted.</p>
+                }
+                else
+                {
+                    <p>Are you sure you wish to delete <strong>@Model.Name</strong>?</p>
+                    <p class="text-small">This is irreversible.</p>
+                }
+            </div>
+            <div class="modal-footer">
+                @if (!Model.Default)
+                {
+                    <button class="btn btn-danger" id="delete-theme-btn" type="submit">Delete</button>
+                }
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </form>
+    </div>
+</div>

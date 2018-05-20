@@ -11,8 +11,8 @@ namespace RealTimeThemingEngine.Web.Models.Theming
         [StringLength(50, ErrorMessage = "{0} should be {1} characters or less")]
         public string Name { get; set; }
 
-        [DisplayName("Default?")]
-        public bool Default { get; set; }
+        [DisplayName("Active?")]
+        public bool Active { get; set; }
 
         [DisplayName("Read only?")]
         public bool ReadOnly { get; set; }

@@ -1,0 +1,69 @@
+﻿@model RealTimeThemingEngine.Web.Models.Theming.ThemeViewModel
+
+@{
+    ViewBag.Title = "Theme Management";
+
+    object nameAttributes = new { @class = "form-control" };
+    object checkboxDefaultAttributes = new { @class = "form-check-input" };
+    string btnEditTxt = "Edit theme variables";
+    string btnEditDisabled = "";
+    string btnDeleteTxt = "Delete the theme";
+    string btnDeleteDisabled = "";
+
+    if (Model.ReadOnly)
+    {
+        nameAttributes = new { @class = "form-control", @readonly = "" };
+        btnEditTxt = "This is a system theme and cannot be editted.";
+        btnDeleteTxt = "This is a system theme and cannot be deleted.";
+        btnEditDisabled = "disabled";
+        btnDeleteDisabled = "disabled";
+    }
+
+    if (Model.Active)
+    {
+        checkboxDefaultAttributes = new { @class = "form-check-input", disabled = "" };
+        btnDeleteTxt = "This theme is currently in use and cannot be deleted.";
+        btnDeleteDisabled = "disabled";
+    }
+}
+
+<header class="form-header" ciphr-require="theme-management" ciphr-module-name="ThemeManagement" ciphr-module-variable="editTheme">
+    <div class="container">
+        <h1 class="form-title">Edit @Model.Name</h1>
+    </div>
+</header>
+<div class="container">
+    <form class="card cip-card" id="theme-form">
+        <div class="card-body">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.ThemeId)
+            <div class="form-group">
+                @Html.LabelFor(x => x.Name)
+                @Html.TextBoxFor(x => x.Name, nameAttributes)
+                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group form-check">
+                @Html.CheckBoxFor(x => x.Active, htmlAttributes: checkboxDefaultAttributes)
+                @Html.LabelFor(x => x.Active, htmlAttributes: new { @class = "form-check-label" })
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-secondary" id="save-theme-btn" title="Save any changes" type="submit">
+                <i aria-hidden="true" class="fas fa-save"></i>Save
+            </button>
+            <button class="btn btn-secondary" id="edit-theme-variables-btn" title="@btnEditTxt" type="button" @btnEditDisabled>
+                <i aria-hidden="true" class="fas fa-pencil"></i>Edit Variables
+            </button>
+            <button class="btn btn-secondary" id="export-theme-btn" title="Export the theme to a file" type="button">
+                <i aria-hidden="true" class="fas fa-download"></i>Export
+            </button>
+            <button class="btn btn-secondary" id="confirm-delete-theme-btn" title="@btnDeleteTxt" type="button" @btnDeleteDisabled>
+                <i aria-hidden="true" class="fas fa-trash"></i>Delete
+            </button>
+            <button class="btn btn-secondary" id="back-to-theme-list-btn" title="Go back to the theme list" type="button">
+                <i aria-hidden="true" class="fas fa-list-ul"></i>Back
+            </button>
+        </div>
+    </form>
+</div>
+<div id="theme-deletion-modal-container"></div>
