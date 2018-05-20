@@ -231,7 +231,6 @@
     <Content Include="tsconfig.json" />
     <Content Include="Scripts\Templates\alert.handlebars" />
     <Content Include="Scripts\Templates\load-delay.handlebars" />
-    <Content Include="Scripts\Templates\theme-logo-added.handlebars" />
     <Content Include="Views\ThemeManagement\Index.cshtml" />
     <Content Include="Views\Shared\_PjaxLayout.cshtml" />
     <Content Include="Views\ThemeManagement\CreateTheme.cshtml" />
