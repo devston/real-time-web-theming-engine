@@ -45,10 +45,20 @@ namespace RealTimeThemingEngine.Web.App_Start {
         }
 		
         public static void Start() {
-            IContainer container = IoC.Initialize();
+            RealTimeThemingEngine.DependencyResolution.IoC.InitializeMainContainer(WebAdditionalConfig);
+            IContainer container = RealTimeThemingEngine.DependencyResolution.IoC.GetMainContainer();
             StructureMapDependencyScope = new StructureMapDependencyScope(container);
             DependencyResolver.SetResolver(StructureMapDependencyScope);
             DynamicModuleUtility.RegisterModule(typeof(StructureMapScopeModule));
+        }
+
+        /// <summary>
+        /// This method registers some additional items which are only needed by the Web project.
+        /// </summary>
+        /// <param name="x"></param>
+        public static void WebAdditionalConfig(ConfigurationExpression x)
+        {
+            x.AddRegistry<DefaultRegistry>();
         }
 
         #endregion
