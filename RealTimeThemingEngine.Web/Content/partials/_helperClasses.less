@@ -1,0 +1,159 @@
+﻿/*----------------------------------------------------------------------------*\
+    Helper Classes
+--------------------------------------------------------------------------------
+
+    All helper classes can be found here.
+
+    Contents
+    --------
+
+    1. Bootstrap overrides
+    2. Misc
+
+\*----------------------------------------------------------------------------*/
+
+/*  1. Bootstrap overrides
+------------------------------------------------------------------------------*/
+
+// Contextual background colours.
+.bg-primary {
+    background-color: @colour-primary !important;
+    color: @colour-on-primary !important;
+}
+
+.bg-success {
+    background-color: @colour-bootstrap-state-success-bg;
+}
+
+.bg-danger {
+    background-color: @colour-bootstrap-state-danger-bg;
+}
+
+.bg-warning {
+    background-color: @colour-bootstrap-state-warning-bg;
+}
+
+.bg-info {
+    background-color: @colour-bootstrap-state-info-bg;
+}
+
+/*  2. Misc
+------------------------------------------------------------------------------*/
+
+// Set font weight to bold.
+.bold {
+    font-weight: 700 !important;
+}
+
+// Centre an element vertically.
+.centre-vertically {
+    position: absolute;
+    .transform(translateY(-50%));
+    top: 50%;
+}
+
+// Centre an element vertically with position relative.
+.centre-vertically-relative {
+    .centre-vertically;
+    position: relative;
+}
+
+// Centre login panel but subtract the logo height and margin.
+.centre-vertically-login {
+    // Make the container relative on small devices.
+    @media @M {
+        .centre-vertically;
+    }
+
+    @media @L {
+        top: calc(~"50% - 60px");
+    }
+}
+
+// Change cursor to pointer.
+.cursor-link:not(:disabled) {
+    cursor: pointer !important;
+}
+
+// Change cursor to not-allowed.
+.disabled {
+    cursor: not-allowed !important;
+}
+
+// Display element block.
+.display-block {
+    display: block;
+}
+
+// Display element inline block.
+.display-inline-block {
+    display: inline-block;
+}
+
+// Keep width 100%.
+.full-width {
+    width: 100% !important;
+}
+
+// Set height to auto.
+.height-auto {
+    height: auto !important;
+}
+
+// Small image size.
+.img-sm {
+    height: 50px;
+    width: 50px;
+}
+
+// Remove border.
+.no-border {
+    border: none !important;
+}
+
+// Prevent resizing.
+.no-resize {
+    resize: none !important;
+}
+
+// Remove shadow.
+.no-shadow {
+    box-shadow: none !important;
+}
+
+// Hide the overflow.
+.overflow-hidden {
+    overflow: hidden !important;
+}
+
+// Set the position to relative.
+.position-relative {
+    position: relative;
+}
+
+// Show the container with 15px padding from the fixed top navigation.
+.position-sticky-top {
+    position: sticky;
+    top: 65px;
+}
+
+// Remove <a> tag colour.
+.reset-link-colour {
+    color: @colour-body-text;
+}
+
+// Set the text area resize to vertical only.
+.resize-vertical {
+    resize: vertical;
+}
+
+// Swap margin top and bottom around on <h> tags.
+.reverse-header-margin {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+// Apply a border radius to an element.
+.rounded {
+    border-radius: @size-rounded-border-radius-rem !important;
+}

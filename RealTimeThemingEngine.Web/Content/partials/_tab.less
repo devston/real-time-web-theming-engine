@@ -1,0 +1,64 @@
+﻿/*----------------------------------------------------------------------------*\
+    Tabs
+--------------------------------------------------------------------------------
+
+    All styles related to tabs can be found here.
+
+    Contents
+    --------
+
+    1. Bootstrap tabs
+
+\*----------------------------------------------------------------------------*/
+
+/*  1. Bootstrap tabs
+------------------------------------------------------------------------------*/
+
+.nav-tabs {
+    .nav-link {
+        background-color: @colour-tab-bg;
+        color: @colour-tab-text;
+
+        &:first-child {
+            border-top-left-radius: @size-tab-border-radius-rem;
+        }
+
+        &:last-child {
+            border-top-right-radius: @size-tab-border-radius-rem;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: @colour-tab-bg-hover;
+            border-color: none;
+        }
+
+        &.active {
+            background-color: @colour-tab-active-bg;
+            border-color: rgba(0,0,0,.125) rgba(0,0,0,.125) @colour-tab-active-bg;
+            color: @colour-tab-active-text;
+
+            &:focus,
+            &:hover {
+                background-color: none;
+            }
+        }
+    }
+}
+
+// Bootstrap pill style tabs.
+.nav-pills {
+    .nav-link {
+        border-radius: @size-tab-border-radius-rem;
+
+        &.active {
+            background-color: @colour-tab-pill-active-bg;
+            color: @colour-tab-pill-active-text;
+
+            &:focus,
+            &:hover {
+                background-color: @colour-tab-pill-active-bg;
+            }
+        }
+    }
+}

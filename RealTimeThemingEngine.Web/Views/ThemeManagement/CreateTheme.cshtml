@@ -4,7 +4,7 @@
     ViewBag.Title = "Theme Management";
 }
 
-<header class="form-header" ciphr-require="theme-management" ciphr-module-name="ThemeManagement" ciphr-module-variable="create">
+<header class="form-header" site-require="theme-management" site-module-name="ThemeManagement" site-module-variable="create">
     <div class="container">
         <h1 class="form-title">Create theme</h1>
     </div>
@@ -20,8 +20,8 @@
                 @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
             </div>
             <div class="form-group form-check">
-                @Html.CheckBoxFor(x => x.Default, htmlAttributes: new { @class = "form-check-input" })
-                @Html.LabelFor(x => x.Default, htmlAttributes: new { @class = "form-check-label" })
+                @Html.CheckBoxFor(x => x.Active, htmlAttributes: new { @class = "form-check-input" })
+                @Html.LabelFor(x => x.Active, htmlAttributes: new { @class = "form-check-label" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(x => x.SelectedThemeName)

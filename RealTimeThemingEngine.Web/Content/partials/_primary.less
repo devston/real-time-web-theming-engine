@@ -1,0 +1,40 @@
+﻿/*----------------------------------------------------------------------------*\
+    Primary and main
+--------------------------------------------------------------------------------
+
+    This stylesheet contains any styles linked to base html elements and main 
+    components.
+
+    Contents
+    --------
+
+    1. Base elements
+
+\*----------------------------------------------------------------------------*/
+
+/*  1. Base elements
+------------------------------------------------------------------------------*/
+
+body {
+    background-color: @colour-page-bg;
+    color: @colour-body-text;
+    font-family: @font-primary;
+}
+
+a {
+    color: @colour-link;
+
+    &:hover,
+    &:focus {
+        color: @colour-link;
+    }
+}
+
+// Nav skip link.
+.skip-container {
+    background-color: @colour-menu-bg;
+
+    &:focus {
+        color: @colour-menu-item;
+    }
+}

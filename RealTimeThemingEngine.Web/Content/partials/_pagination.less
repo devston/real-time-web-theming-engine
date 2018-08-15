@@ -1,0 +1,60 @@
+﻿/*----------------------------------------------------------------------------*\
+    Pagination
+--------------------------------------------------------------------------------
+
+    All styles related to pagination can be found here.
+
+\*----------------------------------------------------------------------------*/
+
+.page-item {
+    &.active {
+        .page-link {
+            background-color: @colour-pagination-active-bg;
+            border-color: @colour-pagination-active-border;
+            color: @colour-pagination-active-text;
+
+            &:focus,
+            &:hover {
+                background-color: @colour-pagination-active-bg;
+            }
+        }
+    }
+
+    &.disabled {
+        .page-link {
+            background-color: @colour-pagination-disabled-bg;
+            border-color: @colour-pagination-disabled-border;
+            color: @colour-pagination-disabled-text;
+
+            &:focus,
+            &:hover {
+                background-color: @colour-pagination-disabled-bg;
+            }
+        }
+    }
+
+    .page-link {
+        background-color: @colour-pagination-bg;
+        border-color: @colour-pagination-border;
+        color: @colour-pagination-text;
+
+        &:focus,
+        &:hover {
+            background-color: @colour-pagination-bg-hover;
+        }
+    }
+
+    &:first-child {
+        .page-link {
+            border-bottom-left-radius: @size-pagination-border-radius-rem;
+            border-top-left-radius: @size-pagination-border-radius-rem;
+        }
+    }
+
+    &:last-child {
+        .page-link {
+            border-bottom-right-radius: @size-pagination-border-radius-rem;
+            border-top-right-radius: @size-pagination-border-radius-rem;
+        }
+    }
+}

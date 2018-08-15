@@ -1,0 +1,31 @@
+﻿/*----------------------------------------------------------------------------*\
+    Buttons
+--------------------------------------------------------------------------------
+
+    All styles related to buttons can be found here.
+
+\*----------------------------------------------------------------------------*/
+
+.btn {
+    border-radius: @size-btn-border-radius-rem;
+}
+
+.btn-group-lg > .btn,
+.btn-lg {
+    border-radius: @size-btn-lg-border-radius-rem;
+}
+
+.btn-primary {
+    background-color: @colour-btn-primary-bg;
+    border-color: @colour-btn-primary-bg;
+    color: @colour-btn-primary-text;
+
+    &:hover,
+    &:focus {
+        background-color: @colour-btn-primary-bg-hover;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 calculateRem(3) rgba(@colour-btn-primary-bg-hover, .5);
+    }
+}

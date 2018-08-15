@@ -1,0 +1,30 @@
+﻿/*----------------------------------------------------------------------------*\
+    Cards
+--------------------------------------------------------------------------------
+
+    All styles related to cards can be found here.
+
+\*----------------------------------------------------------------------------*/
+
+.card {
+    border-radius: @size-card-border-radius-rem;
+}
+
+.card-header {
+    &:first-child {
+        border-radius: @size-card-border-radius-rem @size-card-border-radius-rem 0 0; // Incase value is 0;
+        border-radius: @size-card-inner-border-radius-rem @size-card-inner-border-radius-rem 0 0;
+    }
+}
+
+.card-footer {
+    &:last-child {
+        border-radius: 0 0 @size-card-border-radius-rem @size-card-border-radius-rem; // Incase value is 0;
+        border-radius: 0 0 @size-card-inner-border-radius-rem @size-card-inner-border-radius-rem;
+    }
+}
+
+.card-primary {
+    background-color: @colour-card-primary-bg;
+    color: @colour-card-primary-text;
+}

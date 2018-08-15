@@ -223,10 +223,23 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="package.json" />
+    <Content Include="Content\site.less" />
+    <Content Include="Content\partials\_variables.less" />
+    <Content Include="Content\partials\_button.less" />
+    <Content Include="Content\partials\_card.less" />
+    <Content Include="Content\partials\_helperClasses.less" />
+    <Content Include="Content\partials\_input.less" />
+    <Content Include="Content\partials\_listGroup.less" />
+    <Content Include="Content\partials\_loader.less" />
+    <Content Include="Content\partials\_mixins.less" />
+    <Content Include="Content\partials\_nav.less" />
+    <Content Include="Content\partials\_pagination.less" />
+    <Content Include="Content\partials\_primary.less" />
+    <Content Include="Content\partials\_tab.less" />
+    <Content Include="Content\partials\_table.less" />
     <None Include="packages.config" />
     <Content Include="tsconfig.json" />
     <Content Include="Scripts\Templates\alert.handlebars" />

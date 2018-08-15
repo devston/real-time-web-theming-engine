@@ -58,6 +58,7 @@
     <Compile Include="Entities\ThemeVariableType.cs" />
     <Compile Include="Entities\ThemeVariableValue.cs" />
     <Compile Include="Helpers\DomainMapperService.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ThemeRepository.cs" />
     <Compile Include="ThemeDbContext.cs" />

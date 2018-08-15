@@ -1,0 +1,75 @@
+﻿/*----------------------------------------------------------------------------*\
+    Nav
+--------------------------------------------------------------------------------
+
+    This stylesheet contains any styles linked to the nav.
+
+    Contents
+    --------
+
+    1. Main
+
+\*----------------------------------------------------------------------------*/
+
+/*  1. Main
+------------------------------------------------------------------------------*/
+
+.site-navbar {
+    background-color: @colour-menu-bg;
+    border-color: @colour-menu-border;
+
+    .navbar-brand {
+        color: @colour-menu-item;
+
+        &:focus,
+        &:hover {
+            background-color: @colour-menu-bg-hover;
+        }
+    }
+
+    .navbar-toggler {
+        border-color: @colour-menu-border;
+        color: @colour-menu-item;
+    }
+
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='@{colour-menu-mobile-icon}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+}
+
+.site-navbar-nav {
+    > .nav-item {
+        border-color: @colour-menu-border;
+
+        &:last-child {
+            border-color: @colour-menu-border;
+        }
+    }
+
+    .nav-link {
+        color: @colour-menu-item;
+
+        &:hover,
+        &:focus {
+            background-color: @colour-menu-bg-hover;
+        }
+    }
+
+    .dropdown-menu {
+        background-color: @colour-menu-bg;
+        border-color: @colour-menu-border;
+    }
+
+    .dropdown-item {
+        color: @colour-menu-item;
+
+        &:focus,
+        &:hover {
+            background-color: @colour-menu-bg-hover;
+        }
+    }
+
+    .dropdown-divider {
+        border-color: @colour-menu-border;
+    }
+}

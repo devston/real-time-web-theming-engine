@@ -1,0 +1,147 @@
+﻿//----------------------------------------------------------------------------\\
+//   Variables
+//------------------------------------------------------------------------------
+//
+//  This stylesheet contains all the variables used.
+//
+//  Contents
+//  --------
+//
+//  1. Colours
+//  2. Fonts
+//  3. Sizes
+//  4. Media queries
+//
+//----------------------------------------------------------------------------//
+
+//  1. Colours
+//------------------------------------------------------------------------------
+
+// Basic theme colours.
+@colour-body-text: getColour(colour-body-text); // Page body text colour.
+
+// Primary colours.
+@colour-primary: getColour(colour-primary); // Primary site colour
+@colour-primary-contrast: getContrast(@colour-primary, lighten(@colour-primary, 7%), darken(@colour-primary, 7%)); // Primary contrast colour - used for hover states
+@colour-on-primary: getColour(colour-on-primary); // Text colour on primary background.
+@colour-on-primary-contrast: getContrast(@colour-on-primary, lighten(@colour-on-primary, 7%), darken(@colour-on-primary, 7%)); // Text link hover.
+@colour-page-bg: getColour(colour-page-bg); // Whole page background colour.
+@colour-text-on-page-bg: getColour(colour-text-on-page-bg); // Colour for text on colour-page-bg.
+@colour-link: @colour-primary; // Colour of link elements e.g. <a>.
+@colour-loader: @colour-text-on-page-bg; // Colour of the loader.
+@colour-loader-overlay: rgba(@colour-page-bg, .5); // Colour of the loader overlay.
+
+// Menu colours.
+@colour-menu-bg: getColour(colour-menu-bg); // Header background colour, menu background colour.
+@colour-menu-bg-hover: getContrast(@colour-menu-bg, lighten(@colour-menu-bg, 8%), darken(@colour-menu-bg, 8%));
+@colour-menu-border: getColour(colour-menu-border); // Main menu borders.
+@colour-menu-item: getColour(colour-menu-item); // Menu item text colour.
+@colour-menu-mobile-icon: rgba(@colour-menu-item, 0.99999999); // Menu mobile icon colour.
+
+// Header colours.
+@colour-header-bg: getColour(colour-header-bg); // Page header background colour.
+@colour-header-text: getColour(colour-header-text); // Page header text colour.
+
+// Input colours.
+@colour-input-text: getColour(colour-input-text); // Input text colour.
+@colour-input-placeholder: getContrast(@colour-input-text, lighten(@colour-input-text, 8%), darken(@colour-input-text, 8%)); // Input placeholder text colour.
+@colour-input-border: getColour(colour-input-border); // Input border colour.
+@colour-input-focus: @colour-primary; // Used for border and box shadow when input is focused.
+@colour-input-border-focus: getContrast(@colour-input-focus, lighten(@colour-input-focus, 25%), darken(@colour-input-focus, 25%)); // Input border focus state colour.
+@colour-input-disabled-bg: #e9ecef; // Input background colour when the input is disabled.
+
+// Pagination colours.
+@colour-pagination-bg: getColour(colour-pagination-bg); // Pagination background colour.
+@colour-pagination-bg-hover: getContrast(@colour-pagination-bg, lighten(@colour-pagination-bg, 8%), darken(@colour-pagination-bg, 8%)); // Pagination background hover colour.
+@colour-pagination-border: getColour(colour-pagination-border); // Pagination border colour.
+@colour-pagination-text: getColour(colour-pagination-text); // Pagination text colour.
+@colour-pagination-active-bg: @colour-primary; // Pagination active state background colour.
+@colour-pagination-active-border: @colour-primary; // Pagination active state border colour.
+@colour-pagination-active-text: @colour-on-primary; // Pagination active state text colour.
+@colour-pagination-disabled-bg: @colour-pagination-bg; // Pagination disabled state background colour.
+@colour-pagination-disabled-border: @colour-pagination-border; // Pagination disabled state border colour.
+@colour-pagination-disabled-text: getColour(colour-pagination-disabled-text); // Pagination disabled state text colour.
+
+// Table colours.
+@colour-table-border: getColour(colour-table-border); // Table border colour.
+
+// Card colours.
+@colour-card-body-bg: #fff; // Card body background colour.
+@colour-card-footer-bg: @colour-primary; // Card footer background colour.
+@colour-card-footer-btn-bg: getColour(colour-card-footer-btn-bg); // Card footer button background.
+@colour-card-footer-btn-bg-hover: getContrast(@colour-card-footer-btn-bg, lighten(@colour-card-footer-btn-bg, 10%), darken(@colour-card-footer-btn-bg, 10%));
+@colour-card-footer-btn-txt: getColour(colour-card-footer-btn-txt); // Card footer button text.
+@colour-card-primary-bg: @colour-primary; // Primary card background colour.
+@colour-card-primary-text: @colour-on-primary; // Primary card text colour.
+
+// Button colours.
+@colour-btn-primary-bg: @colour-primary; // Button primary background colour.
+@colour-btn-primary-text: @colour-on-primary; // Button primary text colour.
+@colour-btn-primary-bg-hover: @colour-primary-contrast; // Button primary hover colour.
+@colour-btn-file-bg: getColour(colour-btn-file-bg); // File input button background colour.
+@colour-btn-file-bg-hover: getContrast(@colour-btn-file-bg, lighten(@colour-btn-file-bg, 8%), darken(@colour-btn-file-bg, 8%)); // File input button background hover colour.
+
+// Tab colours.
+@colour-tab-bg: getColour(colour-tab-bg); // Default tab state background colour.
+@colour-tab-bg-hover: getContrast(@colour-tab-bg, lighten(@colour-tab-bg, 10%), darken(@colour-tab-bg, 10%)); // Default tab state hover background colour.
+@colour-tab-text: getColour(colour-tab-text); // Default tab state text colour.
+@colour-tab-active-bg: getColour(colour-tab-active-bg); // Active tab state background colour.
+@colour-tab-active-text: getColour(colour-tab-active-text); // Active tab state text colour.
+@colour-tab-pill-active-bg: @colour-primary; // Pill tab active background colour.
+@colour-tab-pill-active-text: @colour-on-primary; // Pill tab active text colour.
+
+// State colours.
+@colour-valid: getColour(colour-valid); // Input validation is valid colour.
+@colour-invalid: getColour(colour-invalid); // Input validation is invalid colour.
+
+// Don't change these - default bootstrap colours!
+// TODO - Convert these into themable variables.
+@colour-bootstrap-text: #fff;
+@colour-bootstrap-danger: #d9534f;
+@colour-bootstrap-info: #5bc0de;
+@colour-bootstrap-success: #5cb85c;
+@colour-bootstrap-warning: #f0ad4e;
+@colour-bootstrap-state-success-text: #3c763d;
+@colour-bootstrap-state-success-bg: #dff0d8;
+@colour-bootstrap-state-success-border: darken(spin(@colour-bootstrap-state-success-bg, -10), 5%);
+@colour-bootstrap-state-info-text: #31708f;
+@colour-bootstrap-state-info-bg: #d9edf7;
+@colour-bootstrap-state-info-border: darken(spin(@colour-bootstrap-state-info-bg, -10), 7%);
+@colour-bootstrap-state-warning-text: #8a6d3b;
+@colour-bootstrap-state-warning-bg: #fcf8e3;
+@colour-bootstrap-state-warning-border: darken(spin(@colour-bootstrap-state-warning-bg, -10), 5%);
+@colour-bootstrap-state-danger-text: #a94442;
+@colour-bootstrap-state-danger-bg: #f2dede;
+@colour-bootstrap-state-danger-bg-hover: #b52b27;
+@colour-bootstrap-state-danger-border: darken(spin(@colour-bootstrap-state-danger-bg, -10), 5%);
+
+//  2. Fonts
+//------------------------------------------------------------------------------
+
+@font-global: getString(font-global); // Site wide font.
+@font-primary: -apple-system, BlinkMacSystemFont, "@{font-global}", Roboto, Helvetica, Arial, sans-serif;
+
+//  3. Sizes
+//------------------------------------------------------------------------------
+
+@size-btn-border-radius: getSize(size-btn-border-radius) * 1px; // Border radius for buttons.
+@size-btn-border-radius-rem: calculateRem(@size-btn-border-radius); // Border radius for buttons in rem.
+@size-btn-sm-border-radius-rem: @size-btn-border-radius-rem - 0.05rem; // Decrease the border radius for small buttons.
+@size-btn-lg-border-radius-rem: @size-btn-border-radius-rem + 0.05rem; // Increase the border radius for large buttons.
+@size-card-border: 1px; // Default card size border.
+@size-card-border-radius: getSize(size-card-border-radius) * 1px; // Border radius for cards.
+@size-card-border-radius-rem: calculateRem(@size-card-border-radius); // Border radius for cards in rem.
+@size-card-inner-border-radius-rem: calc(~"@{size-card-border-radius-rem} - @{size-card-border}"); // Border radius for card header and footer.
+@size-input-border-radius: getSize(size-input-border-radius) * 1px; // Border radius for inputs.
+@size-input-border-radius-rem: calculateRem(@size-input-border-radius); // Border radius for inputs in rem.
+@size-pagination-border-radius: getSize(size-pagination-border-radius) * 1px; // Border radius for pagination.
+@size-pagination-border-radius-rem: calculateRem(@size-pagination-border-radius); // Border radius for pagination in rem.
+@size-tab-border-radius-rem: @size-card-border-radius-rem; // Border radius for tabs in rem.
+
+//  4. Media Queries
+//------------------------------------------------------------------------------
+
+@S: ~"only screen and (min-width: 576px)";
+@M: ~"only screen and (min-width: 768px)";
+@L: ~"only screen and (min-width: 992px)";
+@XL: ~"only screen and (min-width: 1200px)";

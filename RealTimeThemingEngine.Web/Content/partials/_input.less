@@ -1,0 +1,82 @@
+﻿/*----------------------------------------------------------------------------*\
+    Inputs
+--------------------------------------------------------------------------------
+
+    All styles related to generic form controls can be found here.
+
+\*----------------------------------------------------------------------------*/
+
+.form-control {
+    border-color: @colour-input-border;
+    border-radius: @size-input-border-radius-rem;
+    color: @colour-input-text;
+    .placeholder(@colour-input-placeholder);
+
+    &:focus {
+        border-color: @colour-input-border-focus;
+        box-shadow: 0 0 0 calculateRem(3) rgba(@colour-input-focus, 0.25);
+    }
+
+    &:disabled,
+    &[readonly] {
+        background-color: @colour-input-disabled-bg;
+    }
+
+    &.input-validation-error {
+        border-color: @colour-invalid;
+
+        &:focus {
+            box-shadow: 0 0 0 calculateRem(3) rgba(@colour-invalid, .25);
+        }
+    }
+
+    &.valid {
+        border-color: @colour-valid;
+
+        &:focus {
+            box-shadow: 0 0 0 calculateRem(3) rgba(@colour-valid, .25);
+        }
+    }
+}
+
+// Validation error message.
+.field-validation-error {
+    color: @colour-invalid;
+}
+
+// Validation valid message.
+.field-validation-valid {
+    color: @colour-valid;
+}
+
+// File input wrapper.
+.custom-file-label {
+    border-color: @colour-input-border;
+    border-radius: @size-input-border-radius-rem;
+
+    &:after {
+        border-color: @colour-input-border;
+        background-color: @colour-btn-file-bg;
+    }
+
+    &:hover {
+        &:after {
+            background-color: @colour-btn-file-bg-hover;
+        }
+    }
+}
+
+.custom-file-input:hover ~ .custom-file-label:after {
+    background-color: @colour-btn-file-bg-hover;
+}
+
+.custom-file-label,
+.custom-file-label:after {
+    color: @colour-body-text;
+}
+
+// File input.
+.custom-file-input:focus ~ .custom-file-label {
+    border-color: @colour-input-border-focus;
+    box-shadow: 0 0 0 calculateRem(3) rgba(@colour-input-focus, 0.25);
+}

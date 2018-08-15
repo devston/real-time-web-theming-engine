@@ -1,0 +1,399 @@
+﻿//----------------------------------------------------------------------------\\
+//  Mixins
+//------------------------------------------------------------------------------
+//
+//  This stylesheet contains all mixin shortcuts used in theme.less.
+//
+//  Contents
+//  --------
+//
+//  1. Vendor prefixes
+//  2. Helper mixins
+//  3. Form control mixins
+//
+//----------------------------------------------------------------------------//
+
+//  1. Vendor prefixes
+//------------------------------------------------------------------------------
+
+// Align items mixin - flex-start | flex-end | center | baseline | stretch
+.align-items(@align: stretch) {
+    -webkit-align-items: @align;
+    -moz-align-items: @align;
+    -ms-align-items: @align;
+    align-items: @align;
+}
+
+// Animation mixin
+.animation(@arguments) {
+    -webkit-animation: @arguments;
+    -moz-animation: @arguments;
+    -ms-animation: @arguments;
+    -o-animation: @arguments;
+    animation: @arguments;
+}
+
+// Animation delay mixin.
+.animation-delay(@arguments) {
+    -webkit-animation-delay: @arguments;
+    -moz-animation-delay: @arguments;
+    -ms-animation-delay: @arguments;
+    -o-animation-delay: @arguments;
+    animation-delay: @arguments;
+}
+
+// Animation duration mixin.
+.animation-duration(@arguments) {
+    -webkit-animation-duration: @arguments;
+    -moz-animation-duration: @arguments;
+    -ms-animation-duration: @arguments;
+    -o-animation-duration: @arguments;
+    animation-duration: @arguments;
+}
+
+// Animation fill mode mixin.
+.animation-fill-mode(@arguments) {
+    -webkit-animation-fill-mode: @arguments;
+    -moz-animation-fill-mode: @arguments;
+    -ms-animation-fill-mode: @arguments;
+    -o-animation-fill-mode: @arguments;
+    animation-fill-mode: @arguments;
+}
+
+// Animation iteration count mixin.
+.animation-iteration-count(@arguments) {
+    -webkit-animation-iteration-count: @arguments;
+    -moz-animation-iteration-count: @arguments;
+    -ms-animation-iteration-count: @arguments;
+    -o-animation-iteration-count: @arguments;
+    animation-iteration-count: @arguments;
+}
+
+// Animation name mixin.
+.animation-name(@arguments) {
+    -webkit-animation-name: @arguments;
+    -moz-animation-name: @arguments;
+    -ms-animation-name: @arguments;
+    -o-animation-name: @arguments;
+    animation-name: @arguments;
+}
+
+// Appearance mixin
+.appearance(@arguments) {
+    -webkit-appearance: @arguments;
+    -moz-appearance: @arguments;
+    -ms-appearance: @arguments;
+    -o-appearance: @arguments;
+    appearance: @arguments;
+}
+
+// Backface visibility mixin
+.backface-visibility(@arguments) {
+    -webkit-backface-visibility: @arguments;
+    -moz-backface-visibility: @arguments;
+    -ms-backface-visibility: @arguments;
+    backface-visibility: @arguments;
+}
+
+// Background size mixin
+.background-size(@arguments) {
+    -webkit-background-size: @arguments;
+    -moz-background-size: @arguments;
+    -o-background-size: @arguments;
+    background-size: @arguments;
+}
+
+// Box sizing mixin
+.box-sizing (@arguments) {
+    -webkit-box-sizing: @arguments;
+    -moz-box-sizing: @arguments;
+    box-sizing: @arguments;
+}
+
+// Flexbox display mixin - use flex or inline-flex
+.flex-display(@display: flex) {
+    display: ~"-webkit-@{display}";
+    display: ~"-moz-@{display}";
+    display: ~"-ms-@{display}box"; // IE10 uses -ms-flexbox
+    display: ~"-ms-@{display}"; // IE11
+    display: @display;
+}
+
+// Flex direction and wrap mixin - <flex-direction> || <flex-wrap>
+.flex-flow(@flow) {
+    -webkit-flex-flow: @flow;
+    -moz-flex-flow: @flow;
+    -ms-flex-flow: @flow;
+    flex-flow: @flow;
+}
+
+// Flex grow mixin
+.flex-grow(@grow: 0) {
+    -webkit-flex-grow: @grow;
+    -moz-flex-grow: @grow;
+    -ms-flex-grow: @grow;
+    flex-grow: @grow;
+}
+
+// Gradient mixin.
+.gradient(@type; @colors; @dir: 0deg; @prefixes: webkit, moz, ms, o; @index: length(@prefixes)) when (@index > 0) {
+    .gradient(@type; @colors; @dir; @prefixes; (@index - 1));
+
+    @prefix: extract(@prefixes, @index);
+    @dir-old: 90 - (@dir);
+
+    background-image: ~"-@{prefix}-@{type}-gradient(@{dir-old}, @{colors})";
+
+    & when ( @index = length(@prefixes) ) {
+        background-image: ~"@{type}-gradient(@{dir}, @{colors})";
+    }
+}
+
+// Justify content mixin - flex-start | flex-end | center | space-between | space-around
+.justify-content(@justify: flex-start) {
+    -webkit-justify-content: @justify;
+    -moz-justify-content: @justify;
+    -ms-justify-content: @justify;
+    justify-content: @justify;
+}
+
+// Input placeholder text.
+.placeholder(@color: @colour-body-text) {
+    &::-moz-placeholder {
+        color: @color;
+    }
+
+    &:-ms-input-placeholder {
+        color: @color;
+    }
+
+    &::-webkit-input-placeholder {
+        color: @color;
+    }
+}
+
+// Rotate mixin
+.rotate(@degrees) {
+    -webkit-transform: rotate(@degrees);
+    -ms-transform: rotate(@degrees); // IE9 only
+    -o-transform: rotate(@degrees);
+    transform: rotate(@degrees);
+}
+
+// Rotate mixin - x axis
+.rotateX(@degrees) {
+    -webkit-transform: rotateX(@degrees);
+    -ms-transform: rotateX(@degrees); // IE9 only
+    -o-transform: rotateX(@degrees);
+    transform: rotateX(@degrees);
+}
+
+// Rotate mixin - y axis
+.rotateY(@degrees) {
+    -webkit-transform: rotateY(@degrees);
+    -ms-transform: rotateY(@degrees); // IE9 only
+    -o-transform: rotateY(@degrees);
+    transform: rotateY(@degrees);
+}
+
+// Scale mixin
+.scale(@ratio) {
+    -webkit-transform: scale(@ratio);
+    -ms-transform: scale(@ratio); // IE9 only
+    -o-transform: scale(@ratio);
+    transform: scale(@ratio);
+}
+
+// Scale mixin - two arguments
+.scale(@ratioX; @ratioY) {
+    -webkit-transform: scale(@ratioX, @ratioY);
+    -ms-transform: scale(@ratioX, @ratioY); // IE9 only
+    -o-transform: scale(@ratioX, @ratioY);
+    transform: scale(@ratioX, @ratioY);
+}
+
+// Scale mixin - x axis
+.scaleX(@ratio) {
+    -webkit-transform: scaleX(@ratio);
+    -ms-transform: scaleX(@ratio); // IE9 only
+    -o-transform: scaleX(@ratio);
+    transform: scaleX(@ratio);
+}
+
+// Scale mixin - y axis
+.scaleY(@ratio) {
+    -webkit-transform: scaleY(@ratio);
+    -ms-transform: scaleY(@ratio); // IE9 only
+    -o-transform: scaleY(@ratio);
+    transform: scaleY(@ratio);
+}
+
+// Transform mixin
+.transform(@arguments) {
+    -webkit-transform: @arguments;
+    -moz-transform: @arguments;
+    -ms-transform: @arguments;
+    -o-transform: @arguments;
+    transform: @arguments;
+}
+
+// Transform origin mixin.
+.transform-origin (@x: center, @y: center) {
+    -webkit-transform-origin: @x @y;
+    -moz-transform-origin: @x @y;
+    -ms-transform-origin: @x @y;
+    -o-transform-origin: @x @y;
+    transform-origin: @x @y;
+}
+
+// Transition with transform mixin
+.transformTransition(@arguments) {
+    -webkit-transition: -webkit-transition @arguments;
+    -moz-transition: -moz-transform @arguments;
+    -o-transition: -o-transform @arguments;
+    transition: transform @arguments;
+}
+
+// Transition with transform mixin - two arguments
+.transformTransition(@arguments1, @arguments2) {
+    -webkit-transition: -webkit-transition @arguments1, @arguments2;
+    -moz-transition: -moz-transform @arguments1, @arguments2;
+    -o-transition: -o-transform @arguments1, @arguments2;
+    transition: transform @arguments1, @arguments2;
+}
+
+// Transition mixin
+.transition(@arguments) {
+    -webkit-transition: @arguments;
+    -moz-transition: @arguments;
+    -o-transition: @arguments;
+    transition: @arguments;
+}
+
+// Transition mixin - two arguments
+.transition(@arguments1; @arguments2) {
+    -webkit-transition: @arguments1, @arguments2;
+    -moz-transition: @arguments1, @arguments2;
+    -o-transition: @arguments1, @arguments2;
+    transition: @arguments1, @arguments2;
+}
+
+// Transition mixin - three arguments
+.transition(@arguments1; @arguments2; @arguments3) {
+    -webkit-transition: @arguments1, @arguments2, @arguments3;
+    -moz-transition: @arguments1, @arguments2, @arguments3;
+    -o-transition: @arguments1, @arguments2, @arguments3;
+    transition: @arguments1, @arguments2, @arguments3;
+}
+
+// Transition mixin - four arguments
+.transition(@arguments1; @arguments2; @arguments3; @arguments4) {
+    -webkit-transition: @arguments1, @arguments2, @arguments3, @arguments4;
+    -moz-transition: @arguments1, @arguments2, @arguments3, @arguments4;
+    -o-transition: @arguments1, @arguments2, @arguments3, @arguments4;
+    transition: @arguments1, @arguments2, @arguments3, @arguments4;
+}
+
+// User select mixin
+.user-select(@arguments) {
+    -webkit-user-select: @arguments;
+    -moz-user-select: @arguments;
+    -ms-user-select: @arguments;
+    -o-user-select: @arguments;
+    user-select: @arguments;
+}
+
+//  2. Helper mixins
+//------------------------------------------------------------------------------
+
+// Handle background image for standard and retina displays.
+.background-image(@url, @file) {
+    background-image: url("@{url}@{file}");
+
+    @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+        background-image: url("@{url}@2x-@{file}");
+    }
+}
+
+// Clearfix
+.clearfix() {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+//  3. Form control mixins
+//------------------------------------------------------------------------------
+
+// Alert colour styling.
+.alert-colour (@background; @border; @colour) {
+    background-color: @background;
+    border-color: @border;
+    color: @colour;
+}
+
+// Button colour styling.
+.button-colour(@background; @colour) {
+    background-color: @background;
+    border-color: contrast(@background, darken(@background, 5%), lighten(@background, 5%));
+    color: @colour;
+
+    &:focus, &.focus,
+    &:hover, &.hover {
+        background-color: contrast(@background, darken(@background, 10%), lighten(@background, 10%));
+        border-color: contrast(@background, darken(@background, 15%), lighten(@background, 15%));
+        color: @colour;
+    }
+}
+
+// Print the font size as rem and pixel.
+.font-size(@size) {
+    font-size: @size;
+    font-size: calculateRem(@size);
+}
+
+// List group state styling.
+.list-group-item-variant(@state; @background; @colour) {
+    .list-group-item-@{state} {
+        color: @colour;
+        background-color: @background;
+
+        .list-group-link-icon {
+            color: @colour;
+        }
+
+        a&,
+        button& {
+            color: @colour;
+
+            .list-group-item-heading {
+                color: inherit;
+            }
+
+            &:hover,
+            &:focus {
+                color: @colour;
+                background-color: darken(@background, 5%);
+
+                .list-group-link-icon {
+                    color: @colour;
+                }
+            }
+
+            &.active,
+            &.active:hover,
+            &.active:focus {
+                color: #fff;
+                background-color: @colour;
+                border-color: @colour;
+            }
+        }
+    }
+}
+
+// Panel colour styling.
+.panel-colour(@background; @colour) {
+    background-color: @background;
+    border-color: @background;
+    color: @colour;
+}
